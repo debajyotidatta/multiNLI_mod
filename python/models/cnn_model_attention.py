@@ -88,7 +88,7 @@ def cnn_encoder(filter_sizes, embedding_size, sequence_length, embedded_chars_ex
             padding="VALID",
             name="conv")
         # Apply nonlinearity
-        h = selu.selu(tf.nn.bias_add(conv, b), name="selu")
+        h = selu.selu(tf.nn.bias_add(conv, b))
         # Maxpooling over the outputs
         pooled = tf.nn.max_pool(
             h,
