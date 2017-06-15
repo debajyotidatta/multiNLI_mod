@@ -149,14 +149,14 @@ class MyModel(object):
         num_filters_total, hypothesis_outs = cnn_encoder([1,2,3,4,5], self.embedding_dim, self.sequence_length, hypothesis_in, self.keep_rate_ph, num_filters=5)
         
 
-        premise_outs_attention = attention(premise_outs, attention_size=num_filters_total)
-        hypothesis_outs_attention = attention(hypothesis_outs, attention_size=num_filters_total)
+#         premise_outs_attention = attention(premise_outs, attention_size=num_filters_total)
+#         hypothesis_outs_attention = attention(hypothesis_outs, attention_size=num_filters_total)
         
         # print ("from cnn", premise_outs, hypothesis_outs)
         # premise_outs, c1 = blocks.biLSTM(premise_in, dim=self.dim, seq_len=prem_seq_lengths, name='premise')
         # hypothesis_outs, c2 = blocks.biLSTM(hypothesis_in, dim=self.dim, seq_len=hyp_seq_lengths, name='hypothesis')
         # print ("from lstms", premise_outs, hypothesis_outs)
-        final_out = tf.concat([premise_outs_attention, hypothesis_outs_attention], 1)
+        final_out = tf.concat([premise_outs, hypothesis_outs], 1)
         print("final_out", final_out)
 
         W = tf.get_variable(
