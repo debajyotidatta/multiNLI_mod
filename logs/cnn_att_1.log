@@ -1,0 +1,7 @@
+17-06-15 04:29:22 [1] FIXED_PARAMETERS
+ {'training_mnli': '../data/multinli_0.9/multinli_0.9_train.jsonl', 'training_snli': '../data/snli_1.0/snli_1.0_train.jsonl', 'log_path': '../logs', 'keep_rate': 0.9, 'dev_mismatched': '../data/multinli_0.9/multinli_0.9_dev_mismatched.jsonl', 'test_mismatched': '../data/multinli_0.9/multinli_0.9_test_matched_unlabeled.jsonl', 'hidden_embedding_dim': 300, 'emb_train': True, 'embeddings_to_load': None, 'dev_matched': '../data/multinli_0.9/multinli_0.9_dev_matched.jsonl', 'test_snli': '../data/snli_1.0/snli_1.0_test.jsonl', 'dev_snli': '../data/snli_1.0/snli_1.0_dev.jsonl', 'word_embedding_dim': 300, 'ckpt_path': '../logs', 'learning_rate': 0.0004, 'batch_size': 32, 'embedding_data_path': '../data/glove.840B.300d.txt', 'genre': None, 'alpha': 0.15, 'seq_length': 50, 'test_matched': '../data/multinli_0.9/multinli_0.9_test_matched_unlabeled.jsonl', 'model_type': 'cnn_model_attention', 'model_name': 'cnn_att_1'}
+17-06-15 04:29:22 [1] Loading data
+17-06-15 04:29:51 [1] Building dictionary
+17-06-15 04:30:32 [1] Padding and indexifying sentences
+17-06-15 04:31:45 [1] Loading embeddings
+17-06-15 04:32:28 [1] Building model from cnn_model_attention.py
