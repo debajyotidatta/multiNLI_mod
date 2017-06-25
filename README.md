@@ -1,6 +1,8 @@
-# Baseline Models for MultiNLI Corpus
+## Baseline Models for MultiNLI Corpus. a fork from NYU-MLL group for the RepEval 2017 shared task.
 
-This is the code we used to establish baselines for the MultiNLI corpus introduced in [A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference](https://arxiv.org/pdf/1704.05426.pdf).
+The original version of the [code](https://github.com/NYU-MLL/multiNLI) was used to establish baselines for the MultiNLI corpus introduced in [A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference](https://arxiv.org/pdf/1704.05426.pdf). I have added various approaches on top of the original version to learn about some encoding approaches and implement them . Thanks to the group at NYU, for sharing the code.
+
+One specific change I want to highlight from the original version is that, the way the word-vectors were loaded in the original code was changed to a newer approach, to make it more memory efficient. This is because, while trying out embedding vectors for bigrams and trigrams, it resulted in the graphDef greater than 2GB error. The solution I implemented was from the stackoverflow post [here](https://stackoverflow.com/questions/35687678/using-a-pre-trained-word-embedding-word2vec-or-glove-in-tensorflow).
 
 ## Data
 The MultiNLI and SNLI corpora are both distributed in JSON lines and tab separated value files. Both can be downloaded [here](https://www.nyu.edu/projects/bowman/multinli/).
@@ -13,8 +15,10 @@ words. This representation is passed to a deep, 3-layers, MLP. Main code for thi
 - Bi-directional LSTM: in this model, the average of the states of
 a bidirectional LSTM RNN is used as the sentence representation. Main code for this model is in [`bilstm.py`](https://github.com/NYU-MLL/multiNLI/blob/master/python/models/bilstm.py)
 - Enhanced Sequential Inference Model (ESIM): this is our implementation of the [Chen et al.'s (2017)](https://arxiv.org/pdf/1609.06038v2.pdf) ESIM, without ensembling with a TreeLSTM. Main code for this model is in [`esim.py`](https://github.com/NYU-MLL/multiNLI/blob/master/python/models/esim.py)
+- Suggestions from the [fast-text](https://arxiv.org/abs/1607.01759) paper on bigrams and trigrams and using convolutional neural network and the [selu](https://arxiv.org/abs/1706.02515) activation on top of it.
+- Sentence encoding approach from [Hierarchical Attention Networks for Document Classification](https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf).
 
-We use dropout for regularization in all three models.
+We use dropout for regularization in all the models.
 
 ## Training and Testing
 
@@ -26,8 +30,8 @@ The models can be  trained on three different settings. Each setting has its own
 	- Use [`train_snli.py`](https://github.com/NYU-MLL/multiNLI/blob/master/python/train_snli.py). 
 	- Accuracy on SNLI's dev-set is used to do early stopping. 
 
-- To train a model on only MultiNLI or on a mixture of MultiNLI and SNLI data, 
-	- Use [`train_mnli.py`](https://github.com/NYU-MLL/multiNLI/blob/master/python/train_mnli.py). 
+- To train a model on only MultiNLI or on a mixture of MultiNLI and SNLI data using the n-gram approach, 
+	- Use [`train_mnli_ngram_wv.py`](https://github.com/debajyotidatta/multiNLI_mod/blob/master/python/train_mnli_ngram_wv.py). 
 	- The optional `alpha` flag determines what percentage of SNLI data is used in training. The default value for alpha is 0.0, which means the model will be only trained on MultiNLI data. 
 	- If `alpha` is a set to a value greater than 0 (and less than 1), an `alpha` percentage of SNLI training data is randomly sampled at the beginning of each epoch. 
 	- When using SNLI training data in this setting, we set `alpha` = 0.15.
