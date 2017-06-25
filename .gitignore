@@ -1,3 +1,4 @@
 /data
 /logs_keep
 *.pyc
+*.csv
