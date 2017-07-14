@@ -2,3 +2,5 @@
 /logs_keep
 *.pyc
 *.csv
+*.vscode
+*.DS_Store
