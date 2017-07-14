@@ -14,7 +14,7 @@ import json
 
 parser = argparse.ArgumentParser()
 
-models = ['esim','cbow', 'bilstm', 'lstm', 'cnn_model1', 'cnn_model_attention']
+models = ['esim','cbow', 'bilstm', 'lstm', 'cnn_model1', 'cnn_model_2', 'cbow_wv', 'cnn_bigram']
 def types(s):
     options = [mod for mod in models if s in models]
     if len(options) == 1:
@@ -55,7 +55,7 @@ test_matched = "{}/multinli_0.9/multinli_0.9_test_matched_unlabeled.jsonl".forma
 
 if os.path.isfile(test_matched):
     test_matched = "{}/multinli_0.9/multinli_0.9_test_matched_unlabeled.jsonl".format(args.datapath)
-    test_mismatched = "{}/multinli_0.9/multinli_0.9_test_matched_unlabeled.jsonl".format(args.datapath)
+    test_mismatched = "{}/multinli_0.9/multinli_0.9_test_mismatched_unlabeled.jsonl".format(args.datapath)
     test_path = "{}/multinli_0.9/".format(args.datapath)
 else:
     test_path = "{}/multinli_0.9/".format(args.datapath)
@@ -77,12 +77,12 @@ def load_parameters():
         "training_snli": "{}/snli_1.0/snli_1.0_train.jsonl".format(args.datapath),
         "dev_snli": "{}/snli_1.0/snli_1.0_dev.jsonl".format(args.datapath),
         "test_snli": "{}/snli_1.0/snli_1.0_test.jsonl".format(args.datapath),
-        "embedding_data_path": "{}/glove.840B.300d.txt".format(args.datapath),
+        "embedding_data_path": "/home/ubuntu/Dropbox/xai/AdditionalStuff/pytorch/practical-pytorch/glove-word-vectors/glove.840B.300d.txt",
         "log_path": "{}".format(args.logpath),
         "ckpt_path":  "{}".format(args.ckptpath),
         "embeddings_to_load": args.emb_to_load,
         "word_embedding_dim": 300,
-        "hidden_embedding_dim": 300,
+        "hidden_embedding_dim": 100,
         "seq_length": args.seq_length,
         "keep_rate": args.keep_rate, 
         "batch_size": 32,
